@@ -139,10 +139,10 @@ activeTab = 'all';
 
 tabs = [
   { id: 'all', label: 'All' },
-  { id: 'Derma-PN-Eye', label: 'Derma PN Eye' },
-  { id: 'Derma-1', label: 'Derma PN 1' },
-  { id: 'Derma-2', label: 'Derma PN 2' },
-  { id: 'Derma-3', label: 'Derma PN 3' },
+
+  { id: 'Toners', label: 'TONERS' },
+  { id: 'Cream', label: 'CREAMS' },
+  { id: 'Serum', label: 'SERUMS' },
 ];
 
 
@@ -153,7 +153,7 @@ getAllActiveProductData() {
       if (res.status === 'true' && Array.isArray(res.data)) {
 
         this.originalProducts = res.data.filter(
-          (item: any) => item.countryOrigin?.toLowerCase() === 'lochebio'.toLowerCase()
+          (item: any) => item.brandName?.toLowerCase() === 'glossys'.toLowerCase()
         );
 
         this.getAllProductData = [...this.originalProducts];
