@@ -79,8 +79,17 @@ public routes = routes
 ];
 
 promotionProducts = [
+ 
   {
-    image: 'assets/img/banners/cream.jpg',
+    image: 'assets/img/banners/serum.png',
+    title: 'Dewy Glow Hyaluronic Acid Serum',
+    price: 1899,
+    rating: 4.3,
+    reviews: 112,
+    id: 89,
+  },
+   {
+    image: 'assets/img/banners/cream 14.png',
     title: 'Dewy Glow Hyaluronic Acid Soothing Cream',
     price: 2570,
     rating: 4.0,
@@ -88,15 +97,7 @@ promotionProducts = [
     id: 115,
   },
   {
-    image: 'assets/img/banners/sirum.jpg',
-    title: 'Dewy Glow Hyaluronic Acid Serum',
-    price: 1899,
-    rating: 4.3,
-    reviews: 112,
-    id: 89,
-  },
-  {
-    image: 'assets/img/banners/tonar.jpg',
+    image: 'assets/img/banners/18.png',
     title: 'Dewy Glow Hyaluronic Acid Toner',
     price: 1430,
     rating: 4.2,
