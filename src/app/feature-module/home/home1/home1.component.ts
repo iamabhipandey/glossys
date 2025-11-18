@@ -6,6 +6,7 @@ import { routes } from 'src/app/shared/routes/routes';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { DataService } from 'src/app/shared/services/data/data.service';
 import {  testimonials, thumbnails1 } from 'src/app/shared/services/model/model';
+import Swal from 'sweetalert2';
 interface data {
   value: string;
 }
@@ -20,7 +21,9 @@ public routes = routes
   public thumbnails1: thumbnails1[] = [];
   public testimonials: testimonials[] = [];
  
-  constructor(private data: DataService, private datePipe: DatePipe) {
+  constructor(private data: DataService, private datePipe: DatePipe,
+    private commonService: CommonService, private router: Router
+  ) {
     this.testimonials = this.data.testimonials;
     this.thumbnails1 = this.data.thumbnails1;
     
@@ -82,6 +85,7 @@ promotionProducts = [
     price: 2570,
     rating: 4.0,
     reviews: 150,
+    id: 115,
   },
   {
     image: 'assets/img/banners/sirum.jpg',
@@ -89,6 +93,7 @@ promotionProducts = [
     price: 1899,
     rating: 4.3,
     reviews: 112,
+    id: 89,
   },
   {
     image: 'assets/img/banners/tonar.jpg',
@@ -96,6 +101,7 @@ promotionProducts = [
     price: 1430,
     rating: 4.2,
     reviews: 97,
+    id: 90,
   },
 ];
 
@@ -328,4 +334,129 @@ promotionProducts = [
     this.isClassAdded[index] = !this.isClassAdded[index];
   }
   public isClassAdded: boolean[] = [false];
+
+
+
+
+
+
+
+
+
+
+
+
+    addToCart(productId: number) {
+      if(this.currentLoggedUserId){
+      const payload = {
+        productId: productId,
+        userId: this.currentLoggedUserId,
+      }
+  
+      this.commonService.addToCart(payload).subscribe({
+        next: (res: any) => {
+          if (res.status === 'true') {
+           
+            // ✅ cart count update service me push 
+          this.commonService.updateCartCount(res.data.totalQuantity);
+  
+            Swal.fire({
+            title: 'Success',
+            text: `Item added  to Cart`,
+            icon: 'success',
+            confirmButtonColor: '#0E82FD',
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+            }
+          });
+  
+          } else {
+  
+          }
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+    } else{
+        Swal.fire({
+             title: 'Login Required',
+             text: 'You need to log in to add to cart.',
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonText: 'Log In',
+             cancelButtonText: 'Cancel'
+           }).then((result) => {
+             if (result.isConfirmed) {
+               const url = this.router.url;
+               this.router.navigate(['/authentication/login'], { queryParams: { returnUrl: url } });        
+             }
+           });
+    }
+  
+    }
+  
+
+
+
+  addToWishlist(productId: number) {
+     if(this.currentLoggedUserId){
+  const payload = {
+    productId: productId,
+    userId: this.currentLoggedUserId,
+  };
+
+  this.commonService.addToWishlist(payload).subscribe({
+    next: (res: any) => {
+      if (res.status === 'true') {
+
+        Swal.fire({
+          title: 'Success',
+          text: 'Item added to Wishlist',
+          icon: 'success',
+          confirmButtonColor: '#0E82FD',
+        });
+        
+        // service ke through update
+        this.commonService.updateWishlistCount(res.data.wishlistCount);
+
+        
+      }
+    },
+    error: (err) => console.error(err)
+  });
+}else{
+   Swal.fire({
+        title: 'Login Required',
+        text: 'You need to log in to add to cart.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Log In',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const url = this.router.url;
+          this.router.navigate(['/authentication/login'], { queryParams: { returnUrl: url } });        
+        }
+      });
+}
+}
+
+productProfile(productId: any) {
+  this.router.navigate(
+    [this.routes.listingDetails],
+    {
+      queryParams: {
+        id: productId,   
+        // name: product.productName
+      }
+    }
+  );
+}
+
+currentLoggedUserId: number | null = Number(localStorage.getItem('currentUserId'));
+
+
+
 }

@@ -38,7 +38,7 @@
   <div class="product-flex">
 
     <!-- Serum -->
-    <div class="p-card">
+    <div class="p-card" [routerLink]="routes.listingGrid">
       <div class="p-img">
         <img src="assets/img/banners/sirum-removebg.png" alt="Serum">
       </div>
@@ -48,11 +48,11 @@
         Niacinamide + Centella brighten, soothe and restore a youthful glow.
         <strong>50ml / 1.69 fl. oz.</strong>
       </p>
-      <a href="#" class="p-btn">Discover Serum</a>
+      <a [routerLink]="routes.listingGrid" class="p-btn">Discover Serum</a>
     </div>
 
     <!-- Cream -->
-    <div class="p-card">
+    <div class="p-card" [routerLink]="routes.listingGrid">
       <div class="p-img">
         <img src="assets/img/banners/cream-removebg.png" alt="Cream">
       </div>
@@ -62,11 +62,11 @@
         Calm & nourish with Moringa + soothing botanicals.
         <strong>100ml / 3.38 fl. oz.</strong>
       </p>
-      <a href="#" class="p-btn">Explore Cream</a>
+      <a [routerLink]="routes.listingGrid" class="p-btn">Explore Cream</a>
     </div>
 
     <!-- Toner -->
-    <div class="p-card">
+    <div class="p-card" [routerLink]="routes.listingGrid">
       <div class="p-img">
         <img src="assets/img/banners/tonar-removebg.png" alt="Toner">
       </div>
@@ -76,7 +76,7 @@
         Preps skin for a soft, smooth, radiant finish.
         <strong>200ml / 6.76 fl. oz.</strong>
       </p>
-      <a href="#" class="p-btn">View Toner</a>
+      <a [routerLink]="routes.listingGrid" class="p-btn">View Toner</a>
     </div>
 
   </div>
@@ -95,10 +95,10 @@
       <ng-container *ngFor="let item of promotionProducts">
         <ng-template carouselSlide>
           <div class="product-sec" >
-<!-- [routerLink]="routes.listingGrid" -->
+
             <div class="listing-item product-list">
-              
-              <div class="listing-img">
+
+              <div class="listing-img" (click)="productProfile(item.id)">
                 <a class="product-image">
                   <img [src]="item.image" class="img-fluid" alt="product" />
                 </a>
@@ -123,14 +123,14 @@
                   </div>
                 </div>
 
-                <div class="listing-location-details">
+                <div class="listing-location-details" (click)="productProfile(item.id)">
                   <div class="listing-price">
-                    <h5>₹ {{ item.price }} </h5>
+                    <!-- <h5>₹ {{ item.price }} </h5> -->
                   </div>
                 </div>
 
                 <div class="listing-button">
-                  <a class="btn btn-order">
+                  <a class="btn btn-order" (click)="addToCart(item.id)">
                     <span><i class="fa-solid fa-bag-shopping"></i></span>
                     Add to Cart
                   </a>
