@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewCartComponent } from '../../view-cart/view-cart.component';
 import { DataFactoryService } from 'src/app/shared/services/common/data-factory.service';
 import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -42,6 +43,7 @@ export class HeaderComponent {
     private router: Router,
     private matDialog: MatDialog,
     private dataFactory: DataFactoryService,
+    // private translate: TranslateService
   ) {
     this.common.base.subscribe((res: string) => {
       this.base = res;
@@ -87,6 +89,9 @@ export class HeaderComponent {
 
 
   userLogin: boolean = false;
+
+
+
   
 
 ngOnInit(): void {
@@ -120,6 +125,30 @@ this.common.userLogin$.subscribe((status) => {
   }
 
 
+
+
+  selectedLanguage: any = {
+  code: 'en',
+  label: 'English',
+  flag: 'assets/img/flags/us.png'
+};
+
+changeLanguage(lang: string) {
+  localStorage.setItem('lang', lang);
+  
+  if (lang === 'en') {
+    this.selectedLanguage = { code: 'en', label: 'English', flag: 'assets/img/flags/us.png' };
+  } else if (lang === 'cn') {
+    this.selectedLanguage = { code: 'cn', label: 'Chinese', flag: 'assets/img/flags/cn.png' };
+  } else if (lang === 'kr') {
+    this.selectedLanguage = { code: 'kr', label: 'Korean', flag: 'assets/img/flags/flag-koria.png' };
+  } else if (lang === 'jp') {
+    this.selectedLanguage = { code: 'jp', label: 'Japanese', flag: 'assets/img/flags/jp.png' };
+  }
+
+  // Your existing language service code
+//  this.translate.use(lang);
+}
 
 
   onMenuClick(menu: any, mainMenu: any) {

@@ -143,21 +143,35 @@
       <ul class="nav header-navbar-rht">
         <li>
            <div class="header-top-flag-drops d-flex align-items-center">
-            <div class="header-top-drpodowns">
+           
+
+              <div class="header-top-drpodowns">
               <div class="dropdown header-dropdown country-flag">
-                <a class="dropdown-toggle nav-tog" data-bs-toggle="dropdown" href="javascript:void(0);">
-                  <img src="assets/img/flags/us.png" alt="Img">English
+
+                <!-- SELECTED LANGUAGE SHOW HERE -->
+                <a class="dropdown-toggle nav-tog" data-bs-toggle="dropdown">
+                  <img [src]="selectedLanguage.flag" alt="Img">
+                  {{ selectedLanguage.label }}
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-end">
-                  <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/jp.png" alt="Img">Japan
+
+                  <a class="dropdown-item" (click)="changeLanguage('en')">
+                    <img src="assets/img/flags/us.png" alt="Img"> English
                   </a>
-                  <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/flag-koria.png" alt="Img">Korean
+
+                  <a class="dropdown-item" (click)="changeLanguage('cn')">
+                    <img src="assets/img/flags/cn.png" alt="Img"> Chinese
                   </a>
-                  <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/sn 2.png" alt="Img">China
+
+                  <a class="dropdown-item" (click)="changeLanguage('kr')">
+                    <img src="assets/img/flags/flag-koria.png" alt="Img"> Korean
                   </a>
+
+                  <a class="dropdown-item" (click)="changeLanguage('jp')">
+                    <img src="assets/img/flags/jp.png" alt="Img"> Japanese
+                  </a>
+
                 </div>
               </div>
             </div>
