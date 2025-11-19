@@ -43,18 +43,19 @@ $__whitecolor: #ffffff;
     display: none;
 }
 }
-
+a.navbar-brand.logo img {
+    width: 200px;
+}
 @media (max-width: 1350px) {
 .header .main-menu-wrapper .main-nav:last-child {
     margin-right: 0;
-    font-size: 12px;
+    // font-size: 12px;
     white-space: pre;
 }
 }
 @media (max-width: 1080px) {
-.header .main-menu-wrapper .main-nav:last-child {
-    margin-right: 0;
-    font-size: 10px;
+a.navbar-brand.logo img {
+    width: 180px in !important;
 }
 }
 @media (max-width: 567px) {
