@@ -438,26 +438,33 @@
   color: #4b616a;
   font-size: 15px;
   line-height: 1.7;
-  margin-bottom: 25px;
+  text-align: justify;
+  margin-bottom: 50px;
   position: relative;
   z-index: 2;
 }
 
 
-/* BUTTON */
-.p-btn {
-  display: inline-block;
-  padding: 11px 28px;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #6dc7f7, #469cc7);
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.3px;
-  transition: 0.3s;
-  position: relative;
-  z-index: 2;
+.parent-box {
+    position: relative; /* Required */
+}
+
+.p-btn[_ngcontent-ng-c456957362] {
+    display: inline-block;
+    padding: 11px 28px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #6dc7f7, #469cc7);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    transition: 0.3s;
+    position: absolute;     /* change to absolute */
+    bottom: 20px;           /* distance from bottom */
+    left: 50%;              /* center horizontally */
+    transform: translateX(-50%); /* perfect centering */
+    z-index: 2;
 }
 
 .p-btn:hover {
